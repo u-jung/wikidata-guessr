@@ -1,3 +1,5 @@
+
+
 $(document).ready(function() {
     //
     // Setup
@@ -9,6 +11,34 @@ $(document).ready(function() {
     var totalScore = 0;
     ranOut = false;
     var distance;
+    var lang="de";
+    
+    
+    
+    //
+    //
+    //
+    $("#content").append(
+            '<div id="roundEnd"></div>\
+            <div id="endGame"></div>\
+            <div id="scoreBoard">\
+				<span class="topic"></span>\
+                <span class="round">Current Round: <b>1/5</b></span><br/>\
+                <span class="roundScore">Last Round Score: <b>0</b></span><br/>\
+                <span class="totalScore">Total Score: <b>0</b></span><br />\
+                <span><a href="https://github.com/blinry/wikidata-guessr">View project on GitHub</a></span>\
+                <span>\
+                    <select id="mode">\
+                        <option value="">'+__("Start new game...")+'</option>\
+                        <option value="">'+__("Any item")+'</option>'+initRestrictions()+'\
+                    </select>\
+                </span>\
+            </div>\
+            <div id="miniMap"></div>\
+            <div id="guessButton" class="btn btn-large btn-danger">'+__("Make Your Guess")+'</div>\
+            <img id="image" src="" />'   
+    
+    );
 
     //
     //  Init maps
@@ -16,6 +46,9 @@ $(document).ready(function() {
 
     svinitialize();
     mminitialize();
+    $('#image').draggable();
+    $('#scoreBoard').draggable();
+    
 
     //
     // Scoreboard & Guess button event
@@ -64,7 +97,18 @@ $(document).ready(function() {
                 roundScore = points;
                 totalScore = totalScore + points;
             }
-
+            // What is the current topic?
+            var options=$('#mode option');
+            var values = $.map(options ,function(option) {
+				return option.value +'|'  + option.text;
+			});
+			for (var i=2;i<values.length;i++){
+				if(values[i].split("|").slice(0,2).join("|").slice(1,100)==window.location.search.substr(1)){
+					$('.topic').html('Topic: '+ values[i].split("|")[2]+'<br/>');
+					break;
+				}
+			}
+			
             $('.round').html('Current Round: <b>'+round+'/5</b>');
             $('.roundScore').html('Last Round Score: <b>'+roundScore+'</b>');
             $('.totalScore').html('Total Score: <b>'+totalScore+'</b>');
@@ -206,15 +250,23 @@ $(document).ready(function() {
         // We're done with the game
         window.finished = true;
     }
+    
+    function initRestrictions(){
+		var tmp="";
+		for (var i=0;i<restrictions.length;i++){
+			tmp+='<option value="?'+restrictions[i]["p"]+'|'+restrictions[i]["q"]+'">'+__(restrictions[i]["qTerm"])+'</option>\n'
+		}
+		return tmp
+	}
 
     function svinitialize() {
         var params = window.location.search.substr(1);
-        if (params && params.match(/^Q\d+$/)) {
-            var restriction = "?item wdt:P31 wd:"+params+".";
+        if (params && params.match(/^P\d+\|Q\d+$/)) {
+            var restriction = "?item wdt:"+params.split("|")[0]+" wd:"+params.split("|")[1]+".";
         } else {
             var restriction = "";
         }
-
+		lang=$('#lang').text();
         const query = `
         SELECT ?item ?itemLabel ?itemDescription ?lat ?lon ?photo WHERE { 
             { 
@@ -228,7 +280,7 @@ $(document).ready(function() {
                         ${restriction} 
                 } LIMIT 1000
             } 
-            SERVICE wikibase:label { bd:serviceParam wikibase:language "en,de". } 
+            SERVICE wikibase:label { bd:serviceParam wikibase:language "${lang},en,de". } 
         } 
         `;
         const url = `https://query.wikidata.org/bigdata/namespace/wdq/sparql?format=json&query=${query}`;
