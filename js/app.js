@@ -11,7 +11,7 @@ $(document).ready(function() {
     var totalScore = 0;
     ranOut = false;
     var distance;
-    var lang="de";
+    
     
     
     
@@ -48,7 +48,18 @@ $(document).ready(function() {
     mminitialize();
     $('#image').draggable();
     $('#scoreBoard').draggable();
-    
+    $('#image').dblclick(function(){
+			if($('#image').css("max-width")=="100%"){
+				$('#image').css("max-width","200%");
+				$('#image').css("max-height","200%");
+				}
+			else{
+				$('#image').css("max-width","100%");
+				$('#image').css("max-height","100%");
+				$('#image').css("left","10px");
+				$('#image').css("top","10px");
+				};
+		})
 
     //
     // Scoreboard & Guess button event
