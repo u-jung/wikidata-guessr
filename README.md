@@ -1,4 +1,4 @@
-#Wikidata Guessr
+# Wikidata Guessr
 ===============
 
 Guess the locations of random Wikidata items!
@@ -10,8 +10,8 @@ This copy has been forked from [https://github.com/blinry/morr.cc] with an onlin
 License: GPLv3+
 ===============
 
-
-#What's the point?
+------------------------------
+# What's the point?
 
 Thanks to [Wikidata](https://www.wikidata.org) it is possible to retrieve images from [Wikimedia Commons](https://commons.wikimedia.org) together with the corresponding information, such as the type of object displayed or the geo coordinates. The result was a game.
 
@@ -19,7 +19,7 @@ Five randomly selected images are displayed one after the other. It is to be gue
 
 In the selection field at the bottom left, the class of the objects to be displayed can be displayed in a list.
 
-#Why am I not offered a picture class xyz?
+# Why am I not offered a picture class xyz?
 
 Thank you very much for the question. Here is where you enter the stage! Feel free and change the code according to your own wishes! 
 (A hint: The image classes are defined in the file *restrictions.js*)
