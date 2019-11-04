@@ -36,6 +36,12 @@ restrictions=[
 	},
 	{
 		"p":"P31",
+		"q":"Q166118",
+		"pTerm":__("instance of"),
+		"qTerm":__("Archives"),
+	},
+	{
+		"p":"P31",
 		"q":"Q33506",
 		"pTerm":__("instance of"),
 		"qTerm":__("Museums"),
