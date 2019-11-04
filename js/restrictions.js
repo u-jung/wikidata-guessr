@@ -14,7 +14,7 @@ restrictions=[
 		"p":"P31",
 		"q":"Q515",
 		"pTerm":__("instance of"),
-		"qTerm":__("Citys")
+		"qTerm":__("Cities")
 	},
 	{
 		"p":"P31",

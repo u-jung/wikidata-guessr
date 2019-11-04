@@ -11,6 +11,18 @@ terms={
 		"de":"Neues Spiel beginnen...",
 		"fr":"Commencer un nouveau jeux"
 	},
+	"Congrats!":{
+		"de":"Glückwunsch!",
+		"fr":"Félicitations!"
+	},
+	"Your final score was:":{
+		"de":"Ihre Punktzahl:",
+		"fr":"Votre score final:"
+	},
+	"Play Again?":{
+		"de":"Noch ein Spiel?",
+		"fr":"Une nouvelle ronde?"
+	},
 	"Any item":{
 		"de":"irgendetwas",
 		"fr":"n'importe quoi"
@@ -18,8 +30,31 @@ terms={
 	"Parliament buildings":{
 		"de":"Parlamentsgebäude",
 		"fr":"Parlements"
+	},
+	"Cities":{
+		"de":"Städte",
+		"fr":"Villes"
+	},
+	"Roller coasters":{
+		"de":"Achterbahnen",
+		"fr":"Montanges russes"
+	},
+	"Libraries":{
+		"de":"Bibliotheken",
+		"fr":"Bibliothèques"
+	},
+	"Archives":{
+		"de":"Archive",
+		"fr":"Archives"
+	},
+	"Islands":{
+		"de":"Inseln",
+		"fr":"Îles"
+	},
+	"Germany":{
+		"de":"Deutschland",
+		"fr":"Allemagne"
 	}
-	
 }
 
 function __(term){
